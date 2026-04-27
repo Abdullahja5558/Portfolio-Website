@@ -171,7 +171,7 @@
   transition: all 0.3s ease;
 }
 
-/* --- Mobile Menu Overlay --- */
+
 .mobile-menu-overlay {
   position: fixed;
   inset: 0;
