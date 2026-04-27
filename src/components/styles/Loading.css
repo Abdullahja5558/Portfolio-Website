@@ -3,11 +3,36 @@
   width: 100vw;
   height: var(--vh);
   /* background-image: linear-gradient(#cbb1ff, #d8c4ff); */
-  background-color: #eae5ec;
+   background: linear-gradient(
+    120deg,
+    #ff9a9e,
+    #fad0c4,
+    #a1c4fd,
+    #c2ffd8
+  );
+  background-size: 600% 600%;
+  animation: smoothWave 10s cubic-bezier(0.12, 0.05, 0.25, 0.50) infinite;
   z-index: 999999999;
   display: flex;
   place-items: center;
   justify-content: center;
+}
+@keyframes smoothWave {
+  0% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 50% 100%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  75% {
+    background-position: 50% 0%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 .loading-button {
   padding: 20px 50px;

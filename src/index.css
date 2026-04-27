@@ -1,8 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&display=swap');
+
 
 :root {
-  font-family: "Geist", sans-serif;
-
+  font-family: "sync", sans-serif;
+  font-size: 16px;
   font-optical-sizing: auto;
   font-style: normal;
   line-height: 1.5;
@@ -22,6 +24,29 @@
   --backgroundColor: #0b080c;
   --vh: 100vh;
   --vh: 100svh;
+  --premium-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+::selection {
+  background: var(--accentColor);
+  color: #000;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+ 
+::-webkit-scrollbar-track {
+  background: var(--backgroundColor);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accentColor);
 }
 h1,
 h2,
@@ -29,11 +54,14 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Geist", sans-serif;
+  font-family: "sync", sans-serif;
 }
+html,
 body {
   overflow: hidden;
+  height: 100%;
 }
+
 a {
   color: inherit;
   text-decoration: inherit;
@@ -91,25 +119,55 @@ body {
   flex-wrap: nowrap;
 }
 
+#smooth-content {
+  will-change: transform;
+}
+
+.work-section,
+.career-section-new,
+.techstack,
+.whatIDO {
+  will-change: transform;
+}
+
+.work-box {
+  will-change: transform, opacity;
+}
+
 .techstack {
+
   width: 100%;
   position: relative;
-  height: var(--vh);
-  margin: auto;
-  margin-top: 50px;
-  margin-bottom: -100px;
+  min-height: 110vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 150px 0;
+  padding: 100px 0;
+  z-index: 5;
+  background-color: var(--backgroundColor);
 }
+
 
 .techstack h2 {
   font-size: 80px;
   text-align: center;
-  position: absolute;
+  position: relative; /* Change from absolute to relative to keep it in flow */
   width: 100%;
-  top: 120px;
-  left: 0;
+  margin-bottom: 50px;
+  top: 0; /* Reset top */
   font-weight: 400;
   text-transform: uppercase;
+  z-index: 10;
 }
+
+.tech-canvas {
+  width: 100%;
+  height: 80vh !important; /* Force height for the 3D canvas */
+  min-height: 600px;
+}
+
 
 @media screen and (min-width: 768px) {
   body {

@@ -25,7 +25,6 @@
   margin-right: 10%;
   margin-bottom: 100px;
 }
-
 .hat-h2 {
   font-style: italic;
 }
@@ -49,13 +48,11 @@
   padding: 50px;
   box-sizing: border-box;
 }
-
 .what-noTouch:hover,
 .what-content-active {
   min-height: 67%;
   padding: 40px 50px;
 }
-
 .what-noTouch:hover ~ .what-content,
 .what-box-in:hover .what-noTouch:not(:hover),
 .what-content.what-sibling {
@@ -92,7 +89,6 @@
   60% {
     opacity: 0;
   }
-
   30%,
   50%,
   40%,
@@ -239,11 +235,15 @@
   border: 1px solid #ffffff50;
   border-radius: 30px;
 }
+
+/* Responsive styles for tablets and mobiles */
+
 @media only screen and (max-width: 1600px) {
   .what-box h2 {
     margin-right: 18%;
   }
 }
+
 @media only screen and (max-width: 1400px) {
   .what-box h2 {
     margin-right: 20%;
@@ -265,7 +265,6 @@
   .what-content-active {
     padding: 20px 30px;
   }
-
   .what-noTouch:hover ~ .what-content,
   .what-box-in:hover .what-noTouch:not(:hover),
   .what-content.what-sibling {
@@ -275,14 +274,9 @@
     font-size: 12px;
   }
 }
-@media only screen and (max-width: 1400px) {
-  .what-box-in {
-    margin-left: 50px;
-  }
-  .what-content {
-    width: 380px;
-  }
-}
+
+/* Slightly smaller adjustments for even smaller screens */
+
 @media only screen and (max-width: 1024px) {
   .whatIDO {
     height: auto;
@@ -305,7 +299,6 @@
     min-height: 67%;
     padding: 50px;
   }
-
   .what-noTouch:hover ~ .what-content,
   .what-box-in:hover .what-noTouch:not(:hover),
   .what-content.what-sibling {
@@ -313,6 +306,9 @@
     padding: 10px 50px;
   }
 }
+
+/* Mobile styles for screens up to 900px */
+
 @media only screen and (max-width: 900px) {
   .whatIDO {
     flex-direction: column;
@@ -329,15 +325,15 @@
     height: 500px;
   }
   .what-box {
-    width: 500px;
-    max-width: calc(100% - 50px);
-    margin: auto;
+    width: 100%;
+    max-width: calc(100% - 25px);
+    margin: 0 auto;
   }
   .what-content {
     width: 100%;
   }
   .what-box-in {
-    margin-left: 0px;
+    margin-left: 0;
     height: 450px;
   }
   .what-content h5,
@@ -364,7 +360,6 @@
   .what-tags {
     font-size: 11px;
   }
-
   .what-noTouch:hover ~ .what-content,
   .what-box-in:hover .what-noTouch:not(:hover),
   .what-content.what-sibling {
@@ -374,6 +369,9 @@
     font-size: 25px;
   }
 }
+
+/* Mobile styles for screens up to 550px */
+
 @media only screen and (max-width: 550px) {
   .whatIDO {
     place-items: inherit;
@@ -381,10 +379,13 @@
     justify-content: left;
   }
   .what-box {
-    max-width: calc(100% - 25px);
+    max-width: 100%;
     margin: 0;
   }
 }
+
+/* Keep the desktop styles intact with large screens */
+
 @media only screen and (min-width: 1950px) {
   .what-box h2 {
     font-size: 7rem;

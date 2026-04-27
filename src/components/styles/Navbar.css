@@ -1,83 +1,252 @@
+/* --- Variables --- */
+:root {
+  
+  --nav-bg: rgba(12, 12, 12, 0.35);
+  --nav-bg-scrolled: rgba(5, 5, 5, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-border-scrolled: rgba(255, 255, 255, 0.2);
+}
+
+/* --- Main Header --- */
 .header {
-  display: flex;
-  max-width: var(--cMaxWidth);
-  width: var(--cWidth);
-  justify-content: space-between;
-  padding: 20px 0px;
-  margin-bottom: -100px;
-  box-sizing: border-box;
   position: fixed;
+  top: 10px !important;
   left: 50%;
   transform: translateX(-50%);
-  top: 0;
+  width: auto;
+  min-width: 650px;
   z-index: 9999;
+  transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
 }
-.header ul {
-  font-size: 12px;
+
+.header.is-scrolled {
+  top: 25px !important;
+  min-width: 550px;
+}
+
+/* --- Nav Container (Glassmorphism) --- */
+.nav-container {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 35px;
+  border-radius: 100px;
+  background: var(--nav-bg);
+  backdrop-filter: blur(45px) saturate(210%);
+  -webkit-backdrop-filter: blur(45px) saturate(210%);
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    0 8px 32px 0 rgba(0, 0, 0, 0.37),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: auto;
+  position: relative;
+  overflow: hidden; /* Important to keep progress bar inside the curves */
+}
+
+.header.is-scrolled .nav-container {
+  padding: 8px 30px;
+  background: var(--nav-bg-scrolled);
+  border: 1px solid var(--glass-border-scrolled);
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+/* --- Premium Scroll Progress Bar --- */
+.nav-progress-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2.5px; /* Slightly thicker for better visibility */
+  background: rgba(255, 255, 255, 0.03);
+  z-index: 10;
+}
+
+.nav-progress-bar {
+  height: 100%;
+  width: 0%; /* JS dynamic width */
+  background: linear-gradient(90deg, transparent, var(--accentColor), var(--accentColor));
+  filter: drop-shadow(0 0 8px var(--accentColor)); /* Neon/Premium glow */
+  box-shadow: 0 0 15px var(--accentColor);
+  transition: width 0.2s cubic-bezier(0.23, 1, 0.32, 1); /* Ultra smooth transition */
+}
+
+/* --- Logo --- */
+.navbar-logo {
+  font-family: "Geist", sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: 1px;
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.navbar-logo:hover {
+  opacity: 1;
+}
+
+.navbar-logo span {
+  color: var(--accentColor);
+}
+
+/* --- Nav Links --- */
+.nav-links {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-links ul {
+  display: flex;
+  list-style: none;
+  gap: 35px;
   margin: 0;
   padding: 0;
-  list-style: none;
-  column-gap: 40px;
-  row-gap: 8px;
-  align-items: end;
 }
-.header ul li {
-  margin-left: 0px;
-  letter-spacing: 1px;
-  color: #ccc;
-  font-weight: 600;
-  cursor: pointer;
-}
-.navbar-connect {
-  position: absolute;
-  display: none;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 15px;
-  letter-spacing: 1px;
+
+.nav-links li a {
+  text-decoration: none;
+  font-size: 13px;
   font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.5px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 5px 0;
 }
-.navbar-title {
+
+.nav-links li a:hover {
+  color: #fff;
+}
+
+/* --- CTA Button --- */
+.navbar-cta {
+  background: #fff;
+  color: #000;
+  padding: 0 25px;
+  border-radius: 50px;
+  font-size: 13px;
   font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 0.2px;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 42px;
+  z-index: 2;
 }
-@media only screen and (min-width: 500px) {
+
+.navbar-cta:hover {
+  transform: translateY(-1px);
+  background: var(--accentColor);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+
+
+
+/* --- Mobile Menu Trigger --- */
+.mobile-menu-trigger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 10001;
+}
+
+.mobile-menu-trigger span {
+  width: 25px;
+  height: 2px;
+  background: #fff;
+  transition: all 0.3s ease;
+}
+
+/* --- Mobile Menu Overlay --- */
+.mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 5, 5, 0.95);
+  backdrop-filter: blur(25px);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-menu-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-nav-links {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+}
+
+.mobile-nav-links a {
+  font-size: 36px;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  margin: 20px 0;
+}
+
+.mobile-cta-li {
+  margin-top: 20px;
+}
+
+.navbar-cta-mobile {
+  font-size: 20px;
+  font-weight: 700;
+  color: #000;
+  background-color: #fff;
+  padding: 12px 30px;
+  border-radius: 50px;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.navbar-cta-mobile:hover {
+  background-color: var(--accentColor);
+  color: #fff;
+}
+
+/* --- Responsive Adjustments --- */
+@media screen and (max-width: 1024px) {
   .header {
-    padding: 20px 0px;
+    width: 92%;
+    min-width: unset;
+    top: 25px !important;
   }
-  .header ul {
-    flex-direction: row;
-    align-items: center;
-    font-size: 14px;
+
+  .nav-links,
+  .navbar-cta {
+    display: none;
   }
-  .header ul li {
-    color: #eae5ec;
+
+  .mobile-menu-trigger {
+    display: flex;
   }
-  .navbar-title {
-    font-size: 16px;
-  }
-}
-@media only screen and (min-width: 900px) {
-  .navbar-connect {
-    display: block;
-  }
-}
-@media only screen and (min-width: 1200px) {
-  .header {
-    padding: 35px 0px;
-  }
-  .header ul {
-    column-gap: 80px;
-    font-size: 16px;
-  }
-  .navbar-connect {
-    font-size: 16px;
-  }
-  .navbar-title {
-    font-size: 18px;
+
+  .nav-container {
+    padding: 10px 20px;
+    border-radius: 50px;
   }
 }

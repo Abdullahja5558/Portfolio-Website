@@ -38,45 +38,38 @@ export const handleHeadRotation = (
   headBone: THREE.Object3D,
   mouseX: number,
   mouseY: number,
-  interpolationX: number,
-  interpolationY: number,
+  _interpolationX: number,
+  _interpolationY: number,
   lerp: (x: number, y: number, t: number) => number
 ) => {
   if (!headBone) return;
+  
   if (window.scrollY < 200) {
-    const maxRotation = Math.PI / 6;
-    headBone.rotation.y = lerp(
-      headBone.rotation.y,
-      mouseX * maxRotation,
-      interpolationY
-    );
-    let minRotationX = -0.3;
-    let maxRotationX = 0.4;
-    if (mouseY > minRotationX) {
-      if (mouseY < maxRotationX) {
-        headBone.rotation.x = lerp(
-          headBone.rotation.x,
-          -mouseY - 0.5 * maxRotation,
-          interpolationX
-        );
-      } else {
-        headBone.rotation.x = lerp(
-          headBone.rotation.x,
-          -maxRotation - 0.5 * maxRotation,
-          interpolationX
-        );
-      }
-    } else {
-      headBone.rotation.x = lerp(
-        headBone.rotation.x,
-        -minRotationX - 0.5 * maxRotation,
-        interpolationX
-      );
-    }
+    // Smoother interpolation for buttery tracking
+    const smoothFactor = 0.05;
+    
+    // Calculate target rotations with sensible clamping
+    const maxRotY = Math.PI / 5; // Look left/right limit
+    const maxRotX = Math.PI / 6; // Look up/down limit
+    
+    const targetY = mouseX * maxRotY;
+    
+    // clamp mouseY for realistic up/down limits
+    const clampedMouseY = Math.max(-0.8, Math.min(0.8, mouseY));
+    const targetX = -clampedMouseY * maxRotX - 0.2; // slight natural downward tilt
+
+    headBone.rotation.y = lerp(headBone.rotation.y, targetY, smoothFactor);
+    headBone.rotation.x = lerp(headBone.rotation.x, targetX, smoothFactor);
+    
   } else {
+    // When scrolled down, return to a neutral pose or look at content
+    const smoothFactor = 0.04;
     if (window.innerWidth > 1024) {
-      headBone.rotation.x = lerp(headBone.rotation.x, -0.4, 0.03);
-      headBone.rotation.y = lerp(headBone.rotation.y, -0.3, 0.03);
+      headBone.rotation.x = lerp(headBone.rotation.x, -0.2, smoothFactor);
+      headBone.rotation.y = lerp(headBone.rotation.y, -0.2, smoothFactor);
+    } else {
+      headBone.rotation.x = lerp(headBone.rotation.x, 0, smoothFactor);
+      headBone.rotation.y = lerp(headBone.rotation.y, 0, smoothFactor);
     }
   }
 };

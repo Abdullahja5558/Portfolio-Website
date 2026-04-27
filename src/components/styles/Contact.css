@@ -1,92 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&display=swap');
+
 .contact-section {
   margin: auto;
-  padding-bottom: 100px;
-  margin-top: 100px;
+  padding: 100px 0;
+  max-width: 1200px; /* Ya aapki container ki width */
+  width: 90%;
 }
-.contact-section h3 {
-  font-size: 60px;
-  font-weight: 400;
+
+/* Sub-heading "Have a project in mind?" */
+.contact-section p.sub-heading {
+  text-align: center;
   text-transform: uppercase;
-  margin: 0;
-}
-.contact-flex {
-  display: flex;
-  justify-content: space-between;
-}
-.contact-flex h4 {
-  font-weight: 500;
-  margin: 0;
+  letter-spacing: 2px;
+  font-size: 14px;
+  font-weight: 600;
   opacity: 0.6;
+  margin-bottom: 10px;
 }
-.contact-box {
-  display: flex;
-  flex-direction: column;
+
+/* Big "Let's Talk." Heading */
+.contact-section h3.big-title {
+  font-size: clamp(80px, 15vw, 150px); /* Responsive size */
+  font-weight: 800;
+  text-align: center;
+  margin: 0 0 80px 0;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  display: block;
+  text-decoration: none;
+  font-family: 'Syne', sans-serif;
+   /* Aapka original color use karega */
 }
-.contact-flex p {
-  margin-top: 10px;
+
+
+.contact-section h3.big-title:hover {
+  color: #431f5f;
+  
+
+
+}
+
+/* Footer Grid Style */
+.contact-flex {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.5fr; /* 4 Columns like image */
+  gap: 30px;
+  align-items: flex-start;
+  border-top: 1px solid rgba(0,0,0,0.1); /* Subtle line separator */
+  padding-top: 40px;
+}
+
+.contact-box h4 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   margin-bottom: 20px;
-}
-a.contact-social {
-  font-size: 25px;
-  border-bottom: 1px solid #ccc;
-}
-.contact-box h2 {
-  font-weight: 400;
-  font-size: 23px;
-  margin: 0;
-}
-.contact-box h2 > span {
-  color: var(--accentColor);
-}
-.contact-box h5 {
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 20px;
-  display: flex;
-  gap: 10px;
   opacity: 0.5;
 }
-@media only screen and (max-width: 1600px) {
-  .contact-section h3 {
-    font-size: 50px;
-  }
-  .contact-box h2 {
-    font-size: 20px;
-  }
-  a.contact-social {
-    font-size: 22px;
-  }
+
+.contact-box p, .contact-social-link {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 5px 0;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
-@media only screen and (max-width: 1300px) {
-  .contact-section h3 {
-    font-size: 40px;
-  }
-  .contact-box h2 {
-    font-size: 18px;
-  }
-  a.contact-social {
-    font-size: 20px;
-  }
-  .contact-flex p {
-    margin-top: 0px;
-  }
+
+/* Social icons layout */
+.social-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
+
+/* Availability Badge */
+.availability {
+  background: #f4f4f4;
+  padding: 10px 15px;
+  border-radius: 50px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.dot {
+  height: 8px;
+  width: 8px;
+  background-color: #2ecc71;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Responsive */
 @media only screen and (max-width: 900px) {
   .contact-flex {
-    flex-direction: column;
-    gap: 40px;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
   }
-  .contact-flex p {
-    margin-bottom: 0px;
-  }
-  .contact-flex h4 {
-    margin-top: 20px;
-  }
-  .contact-section {
-    margin-top: 50px;
-    padding-bottom: 50px;
-  }
-  .contact-container {
-    width: calc(100% - 25px);
+}
+
+@media only screen and (max-width: 600px) {
+  .contact-flex {
+    grid-template-columns: 1fr;
   }
 }
